@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:id="@+id/mailTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="rodrigo.ayala@continuum.cl"
+        android:layout_gravity="center_vertical"
+        />
+    <TextView
+        android:id="@+id/descripcion"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="some"
+        android:layout_gravity="center_vertical"
+        />
+    <TextView
+        android:id="@+id/tiempo"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="some"
+        android:layout_gravity="center_vertical"
+        />
+
+</LinearLayout>

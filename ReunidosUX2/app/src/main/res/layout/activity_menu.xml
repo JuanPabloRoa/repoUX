@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.reunidos.reunidosux.Menu"
+    android:gravity="bottom"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+
+
+        android:text="Ofertas"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textStyle="bold|italic" />
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/carouselView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/carouselLabel"
+        android:layout_marginTop="20dp"
+        app:disableAutoPlayOnUserInteraction="true"
+        app:fillColor="#FFFFFFFF"
+        app:pageColor="#00000000"
+        app:radius="6dp"
+        app:strokeColor="#FF777777"
+        app:strokeWidth="1dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:context="com.reunidos.reunidosux.Menu"
+        android:gravity="bottom">
+
+
+        <Space
+            android:layout_width="80dp"
+            android:layout_height="15dp"
+            />
+
+
+        <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:drawableTop="@drawable/grupo"
+        android:padding="8dp"
+        android:text="@string/listas"
+
+        android:textSize="17sp"
+      />
+    <!--View
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="null"/>
+    <Button
+    android:id="@+id/button2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@android:color/transparent"
+    android:drawableTop="@drawable/user"
+    android:padding="10dp"
+    android:text="@string/mis"
+
+    android:textSize="17sp"
+    /-->
+
+    <Button
+    android:id="@+id/button3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@android:color/transparent"
+    android:drawableTop="@drawable/sale"
+    android:padding="10dp"
+    android:layout_gravity="bottom"
+    android:text="@string/offer"
+
+    android:textSize="17sp"
+    />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tvsl"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimary"
+        android:textAlignment="center"
+        android:text="2017 - Bee apps"
+
+        />
+
+</LinearLayout>
