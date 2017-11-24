@@ -10,15 +10,12 @@
     android:gravity="bottom"
     >
 
-    <TextView
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_height="80dp"
 
 
-        android:text="Ofertas"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textStyle="bold|italic" />
+        android:text="Ofertas"/>
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselView"
         android:layout_width="match_parent"
@@ -39,15 +36,7 @@
         android:orientation="horizontal"
         tools:context="com.reunidos.reunidosux.Menu"
         android:gravity="bottom">
-
-
-        <Space
-            android:layout_width="80dp"
-            android:layout_height="15dp"
-            />
-
-
-        <Button
+    <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +47,7 @@
 
         android:textSize="17sp"
       />
-    <!--View
+    <View
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_weight="1"
@@ -73,8 +62,12 @@
     android:text="@string/mis"
 
     android:textSize="17sp"
-    /-->
-
+    />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="null"/>
     <Button
     android:id="@+id/button3"
     android:layout_width="wrap_content"

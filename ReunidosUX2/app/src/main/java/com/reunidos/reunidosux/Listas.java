@@ -2,9 +2,11 @@ package com.reunidos.reunidosux;
 
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -42,7 +44,7 @@ public class Listas extends ActionBarActivity {
     MyAdapter mAdapter;
     basededatosHelper mDbHelper = new basededatosHelper(this);
 
-
+    Integer[] imgid = {R.drawable.sharpie, R.drawable.lapiz, R.drawable.image3, R.drawable.image4, R.drawable.sharpie,R.drawable.sharpie, R.drawable.lapiz, R.drawable.image3, R.drawable.image4, R.drawable.sharpie};
     ArrayList<String> emails;
     ArrayList<ArrayList<String>> todo;
     @Override
@@ -52,12 +54,15 @@ public class Listas extends ActionBarActivity {
         getSupportActionBar().setLogo(R.drawable.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         mDbHelper.deleteAll();
-        mDbHelper.insertData("Lista JP","Lista escolar Colegio Francisco Ramirez","5 días");
-        mDbHelper.insertData("Lista Dany","Lista escolar Colegio 1","20 hrs");
-        mDbHelper.insertData("Lista Rubyano","Lista Seccion A-1 Taller, Universidad de Chile","3 días");
-        mDbHelper.insertData("Lista Diego","Arquitectura USACH Seccion 2B","2 días");
-        mDbHelper.insertData("Lista Roa","Utiles escolares Subercaseaux Collegge Octavo Basico","10 días");
-        mDbHelper.insertData("Lista Juanito","Diseño Grafico, Taller, Universidad de Chile","5 días");
+        mDbHelper.insertData("Articulos escolares","Juan Pablo Roa","Lista de cosas para el colegio","_lápiz-10/cuadernos-15/gomas-10/estuches-2");
+        mDbHelper.insertData("Lista Seccion A-1 arquitectura","Juan Pablo Roa","Lista para el primer trabajo","_Tiralineas-10/Papel bond-15/Block-10/Silicona-2");
+        mDbHelper.insertData("Lista arquitectura USACH","Juan Pablo Roa","Lista para el ultimo trabajo del semestre","_lápiz-10/cuadernos-15/gomas-10/estuches-2");
+        mDbHelper.insertData("Lista Seccion B-1 diseño industrial","Juan Pablo Roa","Lista para el trabajo de taller","_Gubias-10/Acrilico-15/Madera-10/Agorex-2");
+        mDbHelper.insertData("Lista Seccion B-2 comunicacion y medios USACH","Juan Pablo Roa","Lista para el trabajo de fotografia","_lápiz-10/cuadernos-15/gomas-10/estuches-2");
+        mDbHelper.insertData("Lista Seccion A-1 U. de Chile","Juan Pablo Roa","Lista para la primera prueba","_lapiz-10/cuadernos-15/gomas-10/estuches-2");
+        mDbHelper.insertData("Lista Colegio Benjamin Subercaaseaux","Juan Pablo Roa","Lista para el trabajo de artes visuales","_lápiz-10/cuadernos-15/gomas-10/estuches-2");
+        mDbHelper.insertData("Lista Colegio Francico Ramirez 2do medio","Juan Pablo Roa","Lista para el trabajo de tecnologia","_lápiz-10/cuadernos-15/gomas-10/estuches-2");
+        mDbHelper.insertData("Lista Duoc Seccion B-2","Diego Polanco","Lista para el trabajo del profe simpatico","_Tiralinea-10/Block-15/Palos de maqueta-10/Acrilico-2/Silicona-1/");
 
 
         setContentView(R.layout.activity_listas);
@@ -70,19 +75,21 @@ public class Listas extends ActionBarActivity {
         res.moveToFirst();
         String nombre = res.getString(res.getColumnIndexOrThrow(mDbHelper.COL_2));
         String desc = res.getString(res.getColumnIndexOrThrow(mDbHelper.COL_3));
-        String tiemp = res.getString(res.getColumnIndexOrThrow(mDbHelper.COL_4));
+        String prec = res.getString(res.getColumnIndexOrThrow(mDbHelper.COL_4));
+        String items = res.getString(res.getColumnIndexOrThrow(mDbHelper.COL_5));
 
         if (savedInstanceState == null) {
             emails = new ArrayList<>();
-            nombre=nombre+"/"+desc+"/"+tiemp;
+            nombre=nombre+"/"+desc+"/"+prec+"/"+items;
 
             emails.add(nombre);
 
             while(res.moveToNext()!=false){
                 nombre = res.getString(res.getColumnIndexOrThrow(mDbHelper.COL_2));
                 desc = res.getString(res.getColumnIndexOrThrow(mDbHelper.COL_3));
-                tiemp = res.getString(res.getColumnIndexOrThrow(mDbHelper.COL_4));
-                nombre=nombre+"/"+desc+"/"+tiemp;
+                prec = res.getString(res.getColumnIndexOrThrow(mDbHelper.COL_4));
+                items = res.getString(res.getColumnIndexOrThrow(mDbHelper.COL_5));
+                nombre=nombre+"/"+desc+"/"+prec+"/"+items;
                 emails.add(nombre);
 
             }
@@ -92,7 +99,7 @@ public class Listas extends ActionBarActivity {
             emails = savedInstanceState.getStringArrayList("emails");
         }
 
-        mAdapter = new MyAdapter(this,R.layout.custom_row, emails);
+        mAdapter = new MyAdapter(this,R.layout.custom_row, emails,imgid);
         mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -100,7 +107,10 @@ public class Listas extends ActionBarActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 String selectedEmail = mAdapter.getItem(position);
 
-                Toast.makeText(Listas.this, "Funcionalidad no disponible en esta versión", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(Listas.this,detail_list.class);
+                intent.putExtra("SELECT",selectedEmail);
+                startActivity(intent);
+
             }
         });
 
@@ -114,9 +124,10 @@ public class Listas extends ActionBarActivity {
     }
 
     private class MyAdapter extends ArrayAdapter<String> {
-
-        public MyAdapter(Context context, int resource, List<String> objects1) {
+        private final Integer[] imgid;
+        public MyAdapter(Context context, int resource, List<String> objects1,Integer[] imgid) {
             super(context, resource, objects1);
+            this.imgid=imgid;
         }
 
         public View getView(int position, @Nullable View fila, @NonNull ViewGroup parent) {
@@ -131,18 +142,19 @@ public class Listas extends ActionBarActivity {
 
 
             TextView mailImageView = (TextView) fila.findViewById(R.id.mailTextView);
+            ImageView imageView = (ImageView) fila.findViewById(R.id.icon);
             TextView descripcion = (TextView) fila.findViewById(R.id.descripcion);
-            TextView tiempo = (TextView) fila.findViewById(R.id.tiempo);
+            TextView precio = (TextView) fila.findViewById(R.id.precio);
             String correo = getItem(position);
             String[] tokens = correo.split("/");
             int i=0;
             for (String t : tokens){
                 if(i==0){mailImageView.setText(t);}
                 if(i==1){descripcion.setText(t);}
-                if(i==2){tiempo.setText(t);}
+                if(i==2){precio.setText(t);}
                 i++;
                 }
-
+            imageView.setImageResource(imgid[position]);
 
 
 

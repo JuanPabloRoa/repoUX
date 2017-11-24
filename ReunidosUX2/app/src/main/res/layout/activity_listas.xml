@@ -2,6 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
 
     android:layout_height="match_parent" tools:context=".Listas">
+
+
+
+
     <TextView
         android:id="@+id/tvsadal"
         android:layout_width="fill_parent"
@@ -14,47 +18,12 @@
         android:layout_alignParentTop="true"
         />
 
-    <TextView
-        android:layout_marginTop="30dp"
-        android:id="@+id/tvsada"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:textColor="#1f1f23"
-        android:background="#d9d9db"
-
-        android:text="  Creado por:           Nombre de la lista           Tiempo Restante "
-
-
-        />
-
-
-
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/linear_layout_add"
-        android:layout_marginTop="60dp"/>
-
-    <LinearLayout
-        android:id="@id/linear_layout_add"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvsadal">
+    </ListView>
 
-
-    </LinearLayout>
-    <TextView
-        android:id="@+id/tvsl"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:textColor="#ffffff"
-        android:background="@color/colorPrimary"
-
-        android:textAlignment="center"
-        android:text="2017 - Bee apps"
-
-        android:layout_alignParentBottom="true"
-        />
 </RelativeLayout>

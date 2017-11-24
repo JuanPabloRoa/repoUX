@@ -1,3 +1,4 @@
+
 package com.reunidos.reunidosux;
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,6 +16,7 @@ public class basededatosHelper extends SQLiteOpenHelper {
     public static final String COL_2 = "NAME";
     public static final String COL_3 = "SURNAME";
     public static final String COL_4 = "MARKS";
+    public static final String COL_5 = "ITEMS";
 
 
     public basededatosHelper(Context context) {
@@ -23,7 +25,7 @@ public class basededatosHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,SURNAME TEXT,MARKS INTEGER)");
+        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,SURNAME TEXT,MARKS TEXT,ITEMS TEXT)");
     }
 
     @Override
@@ -32,12 +34,13 @@ public class basededatosHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String name,String surname,String marks) {
+    public boolean insertData(String name,String surname,String marks,String items) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2,name);
         contentValues.put(COL_3,surname);
         contentValues.put(COL_4,marks);
+        contentValues.put(COL_5,items);
         long result = db.insert(TABLE_NAME,null ,contentValues);
         if(result == -1)
             return false;
@@ -56,13 +59,14 @@ public class basededatosHelper extends SQLiteOpenHelper {
         db.execSQL("delete from "+ TABLE_NAME);
     }
 
-    public boolean updateData(String id,String name,String surname,String marks) {
+    public boolean updateData(String id,String name,String surname,String marks, String items) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1,id);
         contentValues.put(COL_2,name);
         contentValues.put(COL_3,surname);
         contentValues.put(COL_4,marks);
+        contentValues.put(COL_5,items);
         db.update(TABLE_NAME, contentValues, "ID = ?",new String[] { id });
         return true;
     }

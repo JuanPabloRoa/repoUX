@@ -44,6 +44,8 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         carouselLabel = (TextView) findViewById(R.id.carouselLabel);
         boton1=(Button)  findViewById(R.id.button1);
         boton1.setOnClickListener(this);
+        boton2=(Button)  findViewById(R.id.button2);
+        boton2.setOnClickListener(this);
         boton3=(Button)  findViewById(R.id.button3);
         boton3.setOnClickListener(this);
         carouselView.setOnClickListener(this);
@@ -70,6 +72,10 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                 Intent intentListas=new Intent(Menu.this,Listas.class);
 
                 startActivity(intentListas);
+                break;
+            case R.id.button2:
+
+                bar.show();
                 break;
             case R.id.button3:
 
